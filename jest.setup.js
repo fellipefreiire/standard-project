@@ -1,6 +1,8 @@
-import { configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import '@testing-library/jest-dom'
+import { server } from './mocks/server.js'
 
-configure({
-  adapter: new Adapter()
-})
+beforeAll(() => server.listen())
+
+afterEach(() => server.resetHandlers())
+
+afterAll(() => server.close())
