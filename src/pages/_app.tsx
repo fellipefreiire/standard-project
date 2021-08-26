@@ -1,16 +1,37 @@
 import { AppProps } from 'next/app'
-import { ThemeProvider } from 'styled-components'
 
 import GlobalStyle from '../styles/global'
-import theme from '../styles/theme'
+import { CustomThemeProvider } from '../contexts/theme'
+import { parseCookies } from 'nookies'
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+// @ts-ignore
+const MyApp = ({ Component, pageProps, userTheme }: AppProps) => {
   return (
-    <ThemeProvider theme={theme}>
+    <CustomThemeProvider userTheme={userTheme}>
       <Component {...pageProps} />
       <GlobalStyle />
-    </ThemeProvider>
+    </CustomThemeProvider>
   )
+}
+
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {}
+  let previousTheme = null
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx)
+  }
+
+  if (ctx.req) {
+    previousTheme = parseCookies(ctx)
+  }
+
+  const userTheme = previousTheme['USER_THEME']
+
+  return {
+    pageProps,
+    userTheme
+  }
 }
 
 export default MyApp

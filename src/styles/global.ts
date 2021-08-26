@@ -5,6 +5,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.5s ease;
   }
 
   @media(max-width: 1080px) {
@@ -15,7 +16,7 @@ export default createGlobalStyle`
 
   @media(max-width: 720px) {
     html {
-      font-size: 87.5% // 15px
+      font-size: 87.5% // 14px
     }
   }
 

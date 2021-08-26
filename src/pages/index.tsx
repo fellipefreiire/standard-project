@@ -1,12 +1,13 @@
+import { NextPage } from 'next'
 import Head from 'next/head'
-import Home from '../components/Home'
+import { Home } from '../components/Home'
 
-const Homepage: React.FC = () => {
+const Homepage: NextPage = () => {
   return (
     <div>
       <Head>
         <title>Homepage</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <Home />
