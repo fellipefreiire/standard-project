@@ -4,8 +4,11 @@ import GlobalStyle from '../styles/global'
 import { CustomThemeProvider } from '../contexts/theme'
 import { parseCookies } from 'nookies'
 
-// @ts-ignore
-const MyApp = ({ Component, pageProps, userTheme }: AppProps) => {
+interface CustomProps extends AppProps {
+  userTheme: string
+}
+
+const MyApp = ({ Component, pageProps, userTheme }: CustomProps) => {
   return (
     <CustomThemeProvider userTheme={userTheme}>
       <Component {...pageProps} />
